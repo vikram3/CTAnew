@@ -1,18 +1,18 @@
 [gd_scene load_steps=26 format=3 uid="uid://b4nukjd2ghyj2"]
 
-[ext_resource type="Script" uid="uid://bhqfgi6bf0oo2" path="res://Scenes/Environments/Proto_Levels/proto_level.gd" id="1_8w3j6"]
-[ext_resource type="PackedScene" uid="uid://dmkxl3vi3shkq" path="res://Scenes/Environments/Proto_Levels/Moving_Platforms/moving_platform.tscn" id="2_enaaa"]
-[ext_resource type="PackedScene" uid="uid://d05pgtiygcxgi" path="res://Scenes/Camera/cam_root.tscn" id="3_xe2pq"]
-[ext_resource type="PackedScene" uid="uid://rg6eyl8kgtdj" path="res://Scenes/Scene_Manager/trigger_area/transition_area.tscn" id="4_1tywi"]
-[ext_resource type="Texture2D" uid="uid://cynh16nr52nr2" path="res://Assets/button/button_arrow_right.png" id="5_ir514"]
-[ext_resource type="Texture2D" uid="uid://xx3558ycywxc" path="res://Assets/button/button_arrow_left_pressed.png" id="6_wb33d"]
-[ext_resource type="Texture2D" uid="uid://b3ifpug2mjuo7" path="res://Assets/button/button_arrow_up_pressed.png" id="7_aomr6"]
-[ext_resource type="Texture2D" uid="uid://cgifynuyolm00" path="res://Assets/bgandTiles/skyBackgroundNight.png" id="8_utg6q"]
-[ext_resource type="Texture2D" uid="uid://ccf05640ckx6m" path="res://Assets/bgandTiles/bgAssetsNight.png" id="9_po77d"]
-[ext_resource type="PackedScene" uid="uid://b8u54nwif8s4d" path="res://Scenes/Characters/Player/player.tscn" id="10_0gj6u"]
-[ext_resource type="PackedScene" uid="uid://byjk18f2ujvhk" path="res://Scenes/Characters/Enemies/skeleton/orange/skeleton_orange.tscn" id="11_g7hll"]
-[ext_resource type="Script" uid="uid://bm4tlsnja3b5c" path="res://Scenes/Levels/hud.gd" id="12_xe2pq"]
-[ext_resource type="Script" uid="uid://b6f48w5ow40o7" path="res://Scenes/Levels/point_light_2d.gd" id="13_1tywi"]
+[ext_resource type="Script" uid="uid://bhqfgi6bf0oo2" path="res://Scenes/Environments/Proto_Levels/proto_level.gd" id="1_if8hn"]
+[ext_resource type="PackedScene" uid="uid://dmkxl3vi3shkq" path="res://Scenes/Environments/Proto_Levels/Moving_Platforms/moving_platform.tscn" id="2_3145r"]
+[ext_resource type="PackedScene" uid="uid://d05pgtiygcxgi" path="res://Scenes/Camera/cam_root.tscn" id="3_eeguc"]
+[ext_resource type="PackedScene" uid="uid://rg6eyl8kgtdj" path="res://Scenes/Scene_Manager/trigger_area/transition_area.tscn" id="4_f2kkt"]
+[ext_resource type="Texture2D" uid="uid://cynh16nr52nr2" path="res://Assets/button/button_arrow_right.png" id="5_wuih0"]
+[ext_resource type="Texture2D" uid="uid://xx3558ycywxc" path="res://Assets/button/button_arrow_left_pressed.png" id="6_47tbx"]
+[ext_resource type="Texture2D" uid="uid://b3ifpug2mjuo7" path="res://Assets/button/button_arrow_up_pressed.png" id="7_5milv"]
+[ext_resource type="Texture2D" uid="uid://cgifynuyolm00" path="res://Assets/bgandTiles/skyBackgroundNight.png" id="8_laf6s"]
+[ext_resource type="Texture2D" uid="uid://ccf05640ckx6m" path="res://Assets/bgandTiles/bgAssetsNight.png" id="9_4xu6i"]
+[ext_resource type="PackedScene" uid="uid://b8u54nwif8s4d" path="res://Scenes/Characters/Player/player.tscn" id="10_d8tb4"]
+[ext_resource type="PackedScene" uid="uid://byjk18f2ujvhk" path="res://Scenes/Characters/Enemies/skeleton/orange/skeleton_orange.tscn" id="11_y38o0"]
+[ext_resource type="Script" uid="uid://bm4tlsnja3b5c" path="res://Scenes/Levels/hud.gd" id="12_t78mk"]
+[ext_resource type="Script" uid="uid://b6f48w5ow40o7" path="res://Scenes/Levels/point_light_2d.gd" id="13_kacjf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6u4j"]
 size = Vector2(64, 40)
@@ -56,7 +56,7 @@ fill_from = Vector2(0.5, 0.42)
 fill_to = Vector2(0.74786323, 0.25641027)
 
 [node name="Level3" type="Node2D" node_paths=PackedStringArray("player", "hud", "game_over_panel", "win_panel", "player_start")]
-script = ExtResource("1_8w3j6")
+script = ExtResource("1_if8hn")
 player = NodePath("Player")
 hud = NodePath("CanvasLayer2/HUD")
 game_over_panel = NodePath("CanvasLayer2/GameOverPanel")
@@ -65,38 +65,38 @@ player_start = NodePath("Start")
 
 [node name="MovingPlatforms" type="Node2D" parent="."]
 
-[node name="MovingPlatform" parent="MovingPlatforms" instance=ExtResource("2_enaaa")]
+[node name="MovingPlatform" parent="MovingPlatforms" instance=ExtResource("2_3145r")]
 position = Vector2(2400, -105)
 move_type = 1
 move_limit = 450.0
 wait_time = 5.0
 
-[node name="MovingPlatform4" parent="MovingPlatforms" instance=ExtResource("2_enaaa")]
+[node name="MovingPlatform4" parent="MovingPlatforms" instance=ExtResource("2_3145r")]
 position = Vector2(2679, -107)
 move_type = 1
 move_limit = 450.0
 wait_time = 5.0
 
-[node name="MovingPlatform2" parent="MovingPlatforms" instance=ExtResource("2_enaaa")]
+[node name="MovingPlatform2" parent="MovingPlatforms" instance=ExtResource("2_3145r")]
 position = Vector2(1687, -96)
 move_type = 1
 speed = 100.0
 move_limit = 450.0
 wait_time = 5.0
 
-[node name="MovingPlatform3" parent="MovingPlatforms" instance=ExtResource("2_enaaa")]
+[node name="MovingPlatform3" parent="MovingPlatforms" instance=ExtResource("2_3145r")]
 position = Vector2(1479, -93)
 move_type = 1
 speed = 120.0
 move_limit = 600.0
 wait_time = 6.0
 
-[node name="MovingPlatform5" parent="MovingPlatforms" instance=ExtResource("2_enaaa")]
+[node name="MovingPlatform5" parent="MovingPlatforms" instance=ExtResource("2_3145r")]
 position = Vector2(834, 12)
 move_type = 1
 move_limit = 150.0
 
-[node name="Cam_Root" parent="." instance=ExtResource("3_xe2pq")]
+[node name="Cam_Root" parent="." instance=ExtResource("3_eeguc")]
 position = Vector2(64, 136)
 
 [node name="Camera2D" parent="Cam_Root" index="0"]
@@ -108,7 +108,7 @@ visible = true
 [node name="CollisionShape2D" parent="Cam_Root/Dead_Zone" index="0"]
 shape = SubResource("RectangleShape2D_q6u4j")
 
-[node name="TransitionArea" parent="." instance=ExtResource("4_1tywi")]
+[node name="TransitionArea" parent="." instance=ExtResource("4_f2kkt")]
 position = Vector2(3416, 101)
 scale = Vector2(1.2, 1.2)
 collision_layer = 3
@@ -138,19 +138,19 @@ shape = SubResource("RectangleShape2D_tkxru")
 [node name="TouchScreenButton" type="TouchScreenButton" parent="control"]
 position = Vector2(46, 172.00002)
 scale = Vector2(0.1, 0.1)
-texture_normal = ExtResource("5_ir514")
+texture_normal = ExtResource("5_wuih0")
 action = "right"
 
 [node name="TouchScreenButton2" type="TouchScreenButton" parent="control"]
 position = Vector2(4.0000076, 171)
 scale = Vector2(0.1, 0.1)
-texture_normal = ExtResource("6_wb33d")
+texture_normal = ExtResource("6_47tbx")
 action = "left"
 
 [node name="TouchScreenButton3" type="TouchScreenButton" parent="control"]
 position = Vector2(272.99997, 136)
 scale = Vector2(0.1, 0.1)
-texture_normal = ExtResource("7_aomr6")
+texture_normal = ExtResource("7_5milv")
 action = "jump"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -160,7 +160,7 @@ scroll_ignore_camera_zoom = true
 
 [node name="SkyBackgroundNight" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(1, 431)
-texture = ExtResource("8_utg6q")
+texture = ExtResource("8_laf6s")
 
 [node name="ENV" type="Node2D" parent="."]
 z_index = -1
@@ -168,35 +168,35 @@ z_index = -1
 [node name="BgAssetsNight3" type="Sprite2D" parent="ENV"]
 position = Vector2(42.000015, 156)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(2584, 1720, 856, 392)
 
 [node name="BgAssetsNight11" type="Sprite2D" parent="ENV"]
 position = Vector2(431, 192)
 scale = Vector2(0.5432433, 0.5432433)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(2144, 208, 1608, 296)
 
 [node name="BgAssetsNight20" type="Sprite2D" parent="ENV"]
 position = Vector2(1299, 192)
 scale = Vector2(0.5432433, 0.5432433)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(2144, 208, 1608, 296)
 
 [node name="BgAssetsNight22" type="Sprite2D" parent="ENV"]
 position = Vector2(2173, 190)
 scale = Vector2(0.5432433, 0.5432433)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(2144, 208, 1608, 296)
 
 [node name="BgAssetsNight23" type="Sprite2D" parent="ENV"]
 position = Vector2(3041.0002, 190)
 scale = Vector2(0.5432433, 0.5432433)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(2144, 208, 1608, 296)
@@ -204,84 +204,84 @@ region_rect = Rect2(2144, 208, 1608, 296)
 [node name="BgAssetsNight18" type="Sprite2D" parent="ENV"]
 position = Vector2(-655, 192)
 scale = Vector2(0.5432433, 0.5432433)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(2144, 208, 1608, 296)
 
 [node name="BgAssetsNight8" type="Sprite2D" parent="ENV"]
 position = Vector2(555, 37.999985)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(1352, 296, 184, 1040)
 
 [node name="BgAssetsNight9" type="Sprite2D" parent="ENV"]
 position = Vector2(-316, 21)
 scale = Vector2(0.37731954, 0.37731954)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(144, 1488, 1096, 776)
 
 [node name="BgAssetsNight10" type="Sprite2D" parent="ENV"]
 position = Vector2(203, 21)
 scale = Vector2(0.37731954, 0.37731954)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(144, 1488, 1096, 776)
 
 [node name="BgAssetsNight25" type="Sprite2D" parent="ENV"]
 position = Vector2(1123, 21)
 scale = Vector2(0.37731954, 0.37731954)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(144, 1488, 1096, 776)
 
 [node name="BgAssetsNight26" type="Sprite2D" parent="ENV"]
 position = Vector2(2058, 21)
 scale = Vector2(0.37731954, 0.37731954)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(144, 1488, 1096, 776)
 
 [node name="BgAssetsNight27" type="Sprite2D" parent="ENV"]
 position = Vector2(3109, 21)
 scale = Vector2(0.37731954, 0.37731954)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(144, 1488, 1096, 776)
 
 [node name="BgAssetsNight16" type="Sprite2D" parent="ENV"]
 position = Vector2(709, 54)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(61, 2381, 1951, 1073)
 
 [node name="BgAssetsNight5" type="Sprite2D" parent="ENV"]
 position = Vector2(622.18823, 127.799995)
 scale = Vector2(0.15294121, 0.15294121)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(184, 504, 536, 408)
 
 [node name="BgAssetsNight14" type="Sprite2D" parent="ENV"]
 position = Vector2(703.00006, 127.799995)
 scale = Vector2(0.15294121, 0.15294121)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(184, 504, 536, 408)
 
 [node name="BgAssetsNight" type="Sprite2D" parent="ENV"]
 position = Vector2(117.00001, 111)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(61, 2381, 1951, 1073)
 
 [node name="BgAssetsNight28" type="Sprite2D" parent="ENV"]
 position = Vector2(1667, 111)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(61, 2381, 1951, 1073)
@@ -289,7 +289,7 @@ region_rect = Rect2(61, 2381, 1951, 1073)
 [node name="BgAssetsNight29" type="Sprite2D" parent="ENV"]
 position = Vector2(2542, 111)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(61, 2381, 1951, 1073)
@@ -297,35 +297,35 @@ region_rect = Rect2(61, 2381, 1951, 1073)
 [node name="BgAssetsNight30" type="Sprite2D" parent="ENV"]
 position = Vector2(2688, 111)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(61, 2381, 1951, 1073)
 
 [node name="BgAssetsNight13" type="Sprite2D" parent="ENV"]
 position = Vector2(252, 142)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(2584, 1720, 856, 392)
 
 [node name="BgAssetsNight15" type="Sprite2D" parent="ENV"]
 position = Vector2(784, 127.799995)
 scale = Vector2(0.15294121, 0.15294121)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(184, 504, 536, 408)
 
 [node name="BgAssetsNight7" type="Sprite2D" parent="ENV"]
 position = Vector2(-53.000004, 116)
 scale = Vector2(0.42499995, 0.42499995)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(3784, 240, 288, 752)
 
 [node name="BgAssetsNight17" type="Sprite2D" parent="ENV"]
 position = Vector2(-174.00002, 116.00001)
 scale = Vector2(0.42499995, 0.42499995)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(3784, 240, 288, 752)
@@ -333,7 +333,7 @@ region_rect = Rect2(3784, 240, 288, 752)
 [node name="BgAssetsNight24" type="Sprite2D" parent="ENV"]
 position = Vector2(3534.0002, 116.00001)
 scale = Vector2(0.42499995, 0.42499995)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(3784, 240, 288, 752)
@@ -341,14 +341,14 @@ region_rect = Rect2(3784, 240, 288, 752)
 [node name="BgAssetsNight6" type="Sprite2D" parent="ENV"]
 position = Vector2(840, 123)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(3432, 552, 296, 752)
 
 [node name="BgAssetsNight21" type="Sprite2D" parent="ENV"]
 position = Vector2(866.00006, 123.00001)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(3432, 552, 296, 752)
@@ -356,28 +356,28 @@ region_rect = Rect2(3432, 552, 296, 752)
 [node name="BgAssetsNight12" type="Sprite2D" parent="ENV"]
 position = Vector2(494, 106)
 scale = Vector2(0.1, 0.1668919)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(2144, 208, 1608, 296)
 
 [node name="BgAssetsNight4" type="Sprite2D" parent="ENV"]
 position = Vector2(465, 136.3)
 scale = Vector2(0.1, 0.1668919)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(2144, 208, 1608, 296)
 
 [node name="BgAssetsNight19" type="Sprite2D" parent="ENV"]
 position = Vector2(1272, 136.3)
 scale = Vector2(0.1, 0.1668919)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(2144, 208, 1608, 296)
 
 [node name="BgAssetsNight31" type="Sprite2D" parent="ENV"]
 position = Vector2(1431, 136.3)
 scale = Vector2(0.1, 0.1668919)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(2144, 208, 1608, 296)
@@ -385,14 +385,14 @@ region_rect = Rect2(2144, 208, 1608, 296)
 [node name="BgAssetsNight32" type="Sprite2D" parent="ENV"]
 position = Vector2(1983.3999, 136.7)
 scale = Vector2(0.1, 0.1668919)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(2144, 208, 1608, 296)
 
 [node name="BgAssetsNight33" type="Sprite2D" parent="ENV"]
 position = Vector2(2142.4, 136.7)
 scale = Vector2(0.1, 0.1668919)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(2144, 208, 1608, 296)
@@ -400,14 +400,14 @@ region_rect = Rect2(2144, 208, 1608, 296)
 [node name="BgAssetsNight34" type="Sprite2D" parent="ENV"]
 position = Vector2(3024.4, 136.7)
 scale = Vector2(0.1, 0.1668919)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(2144, 208, 1608, 296)
 
 [node name="BgAssetsNight35" type="Sprite2D" parent="ENV"]
 position = Vector2(3183.4, 136.7)
 scale = Vector2(0.1, 0.1668919)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(2144, 208, 1608, 296)
@@ -416,11 +416,11 @@ region_rect = Rect2(2144, 208, 1608, 296)
 z_index = 2
 position = Vector2(564, 83)
 scale = Vector2(0.24419926, 0.24419926)
-texture = ExtResource("9_po77d")
+texture = ExtResource("9_4xu6i")
 region_enabled = true
 region_rect = Rect2(2019, 2763, 565, 639)
 
-[node name="Player" parent="." instance=ExtResource("10_0gj6u")]
+[node name="Player" parent="." instance=ExtResource("10_d8tb4")]
 position = Vector2(72, 144)
 knockback_strength = 10.0
 
@@ -497,35 +497,35 @@ shape = SubResource("RectangleShape2D_hk4vc")
 position = Vector2(280, 136.00002)
 scale = Vector2(0.1, 0.1)
 
-[node name="skeleton_orange" parent="enemies" instance=ExtResource("11_g7hll")]
+[node name="skeleton_orange" parent="enemies" instance=ExtResource("11_y38o0")]
 position = Vector2(3619.9995, -590)
 attack_distance = 10.0
 
-[node name="skeleton_orange2" parent="enemies" instance=ExtResource("11_g7hll")]
+[node name="skeleton_orange2" parent="enemies" instance=ExtResource("11_y38o0")]
 position = Vector2(7579.999, -60.000244)
 attack_distance = 10.0
 
-[node name="skeleton_orange3" parent="enemies" instance=ExtResource("11_g7hll")]
+[node name="skeleton_orange3" parent="enemies" instance=ExtResource("11_y38o0")]
 position = Vector2(7929.999, -2810)
 attack_distance = 10.0
 
-[node name="skeleton_orange4" parent="enemies" instance=ExtResource("11_g7hll")]
+[node name="skeleton_orange4" parent="enemies" instance=ExtResource("11_y38o0")]
 position = Vector2(14299.998, -60.000244)
 attack_distance = 10.0
 
-[node name="skeleton_orange5" parent="enemies" instance=ExtResource("11_g7hll")]
+[node name="skeleton_orange5" parent="enemies" instance=ExtResource("11_y38o0")]
 position = Vector2(18120, -2710)
 attack_distance = 10.0
 
-[node name="skeleton_orange6" parent="enemies" instance=ExtResource("11_g7hll")]
+[node name="skeleton_orange6" parent="enemies" instance=ExtResource("11_y38o0")]
 position = Vector2(20970, -80.000244)
 attack_distance = 10.0
 
-[node name="skeleton_orange7" parent="enemies" instance=ExtResource("11_g7hll")]
+[node name="skeleton_orange7" parent="enemies" instance=ExtResource("11_y38o0")]
 position = Vector2(28750, -2710)
 attack_distance = 10.0
 
-[node name="skeleton_orange8" parent="enemies" instance=ExtResource("11_g7hll")]
+[node name="skeleton_orange8" parent="enemies" instance=ExtResource("11_y38o0")]
 position = Vector2(28750, -2710)
 attack_distance = 10.0
 
@@ -538,7 +538,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("12_xe2pq")
+script = ExtResource("12_t78mk")
 health_bar = NodePath("ProgressBar")
 coin_label = NodePath("Label")
 
@@ -699,7 +699,7 @@ rotation = -3.1415927
 scale = Vector2(14.89568, 10.9650345)
 color = Color(1, 0.47843137, 0.47843137, 1)
 texture = SubResource("GradientTexture2D_ir514")
-script = ExtResource("13_1tywi")
+script = ExtResource("13_kacjf")
 
 [editable path="Cam_Root"]
 [editable path="TransitionArea"]
