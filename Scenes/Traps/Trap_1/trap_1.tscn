@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq36566u8yqrx"]
+
+[ext_resource type="Script" uid="uid://beprix2fiwloh" path="res://Scenes/Traps/Trap_1/trap_1.gd" id="1_5yqsj"]
+[ext_resource type="Texture2D" uid="uid://coryepn1k0qvi" path="res://Assets/TopDown/Arrow.png" id="2_js2g3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5yqsj"]
+size = Vector2(192, 192)
+
+[node name="Trap_1" type="CharacterBody2D" node_paths=PackedStringArray("wait_timer")]
+collision_layer = 0
+script = ExtResource("1_5yqsj")
+top_position_y = 5.0
+wait_timer = NodePath("Timer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5yqsj")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Arrow" type="Sprite2D" parent="."]
+texture = ExtResource("2_js2g3")

@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://iya18mo1xk2b"]
+
+[ext_resource type="Texture2D" uid="uid://cecj43ubg8inl" path="res://Assets/Video game/Refrence/Assets/Environment/World_2/PixelPlatformerSet1v.1.1/Background/01 background.png" id="1_nw43g"]
+[ext_resource type="Texture2D" uid="uid://bw0jjjsq32gsd" path="res://Assets/Video game/Refrence/Assets/Environment/World_2/PixelPlatformerSet1v.1.1/Background/02 background.png" id="2_swcw3"]
+[ext_resource type="Texture2D" uid="uid://2v5tseh8qhrf" path="res://Assets/Video game/Refrence/Assets/Environment/World_2/PixelPlatformerSet1v.1.1/Background/03 background B.png" id="3_fa6lk"]
+[ext_resource type="Texture2D" uid="uid://caolhs33usqsq" path="res://Assets/Video game/Refrence/Assets/Environment/World_2/PixelPlatformerSet1v.1.1/Background/04 background.png" id="4_kwu7d"]
+[ext_resource type="Texture2D" uid="uid://fcd32qq8jtxp" path="res://Assets/Video game/Refrence/Assets/Environment/World_2/PixelPlatformerSet1v.1.1/Background/05 background.png" id="5_gojpy"]
+
+
+[node name="ParallaxBackground" type="Node2D"]
+z_index = -10
+
+[node name="Background_1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 1)
+repeat_size = Vector2(426, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Background_1"]
+texture_repeat = 2
+position = Vector2(-200, -192)
+texture = ExtResource("1_nw43g")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 426, 384)
+
+[node name="Background_2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 1)
+repeat_size = Vector2(426, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Background_2"]
+texture_repeat = 2
+position = Vector2(-200, -192)
+texture = ExtResource("2_swcw3")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 426, 384)
+
+[node name="Background_3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.6, 1)
+repeat_size = Vector2(426, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Background_3"]
+texture_repeat = 2
+position = Vector2(-200, -192)
+texture = ExtResource("3_fa6lk")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 426, 384)
+
+[node name="Background_4" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(426, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Background_4"]
+texture_repeat = 2
+position = Vector2(-200, -192)
+texture = ExtResource("4_kwu7d")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 426, 384)
+
+[node name="Background_5" type="Parallax2D" parent="."]
+repeat_size = Vector2(426, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Background_5"]
+texture_repeat = 2
+position = Vector2(-200, -192)
+texture = ExtResource("5_gojpy")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 426, 384)

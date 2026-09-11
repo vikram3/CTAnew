@@ -1,0 +1,951 @@
+[gd_scene load_steps=22 format=3 uid="uid://c0atksvcpbkw4"]
+
+[ext_resource type="Script" uid="uid://ccub2f76kiw7a" path="res://Scenes/Levels/lev_2.gd" id="1_vya06"]
+[ext_resource type="PackedScene" uid="uid://cv5y5kai8g7g4" path="res://Scenes/Levels/td_player.tscn" id="2_fhg1k"]
+[ext_resource type="PackedScene" uid="uid://byjk18f2ujvhk" path="res://Scenes/Characters/Enemies/skeleton/orange/skeleton_orange.tscn" id="4_yvyp7"]
+[ext_resource type="Script" uid="uid://8wj80ew8ipub" path="res://Scenes/Levels/sortables.gd" id="5_3kdxc"]
+[ext_resource type="Script" uid="uid://qrkno4wa7aw3" path="res://Scenes/Levels/exit_door.gd" id="7_hdnug"]
+[ext_resource type="Texture2D" uid="uid://y833bycojj61" path="res://Assets/TopDown/props 1.png" id="8_5qrc7"]
+[ext_resource type="PackedScene" uid="uid://dcpgodgyy0ael" path="res://Scenes/Collectables/Coin/coin.tscn" id="9_3fk8m"]
+[ext_resource type="PackedScene" uid="uid://bq36566u8yqrx" path="res://Scenes/Traps/Trap_1/trap_1.tscn" id="10_6qohv"]
+[ext_resource type="Script" uid="uid://3eot3xp0sdod" path="res://Scenes/Levels/top_down_damage_area.gd" id="11_18isv"]
+[ext_resource type="Texture2D" uid="uid://cp47ji1jjkf1" path="res://Assets/TopDown/Spear.png" id="12_5rtmd"]
+[ext_resource type="PackedScene" uid="uid://bthojiue67ein" path="res://Scenes/Traps/Trap_2/spike.tscn" id="13_fcxnj"]
+[ext_resource type="Texture2D" uid="uid://cgifynuyolm00" path="res://Assets/bgandTiles/skyBackgroundNight.png" id="17_5qrc7"]
+[ext_resource type="Script" uid="uid://bm4tlsnja3b5c" path="res://Scenes/Levels/hud.gd" id="17_hdnug"]
+[ext_resource type="Texture2D" uid="uid://ccf05640ckx6m" path="res://Assets/bgandTiles/bgAssetsNight.png" id="18_3fk8m"]
+[ext_resource type="Script" uid="uid://b6f48w5ow40o7" path="res://Scenes/Levels/point_light_2d.gd" id="18_5qrc7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iwvje"]
+radius = 96.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4puh"]
+size = Vector2(130, 100)
+
+[sub_resource type="Gradient" id="Gradient_rn0ox"]
+offsets = PackedFloat32Array(0.2, 0.6, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1.0566169, 1.0566169, 0.74671537, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_18isv"]
+gradient = SubResource("Gradient_rn0ox")
+fill = 1
+fill_from = Vector2(0.5, 0.42)
+fill_to = Vector2(0.74786323, 0.25641027)
+
+[sub_resource type="Environment" id="Environment_5rtmd"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.1
+adjustment_saturation = 1.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d5jr3"]
+size = Vector2(1078, 138)
+
+[node name="Lev_2" type="Node2D" node_paths=PackedStringArray("player", "chest", "hud", "game_over_panel", "win_panel", "player_start", "chest_light", "world_environment")]
+script = ExtResource("1_vya06")
+player = NodePath("Sortables/TDPlayer")
+chest = NodePath("Sortables/Props/ExitDoor")
+hud = NodePath("CanvasLayer/HUD")
+game_over_panel = NodePath("CanvasLayer/GameOverPanel")
+win_panel = NodePath("CanvasLayer/WinPanel")
+player_start = NodePath("Start")
+chest_light = NodePath("End/Exitlight")
+world_environment = NodePath("CanvasModulate/WorldEnvironment")
+use_camera_limits = true
+
+[node name="Sortables" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("5_3kdxc")
+point_color = Color(1, 0, 0, 0)
+
+[node name="Props" type="Node2D" parent="Sortables"]
+y_sort_enabled = true
+
+[node name="ExitDoor" type="Area2D" parent="Sortables/Props"]
+position = Vector2(26634, -188)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("7_hdnug")
+required_coins = 20
+
+[node name="Props1" type="Sprite2D" parent="Sortables/Props/ExitDoor"]
+texture = ExtResource("8_5qrc7")
+region_enabled = true
+region_rect = Rect2(3078, 348, 120, 233)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/ExitDoor"]
+position = Vector2(0, 44)
+shape = SubResource("CircleShape2D_iwvje")
+
+[node name="Coin" parent="Sortables/Props" instance=ExtResource("9_3fk8m")]
+position = Vector2(3918, -436)
+scale = Vector2(6.425, 6.425)
+
+[node name="Coin2" parent="Sortables/Props" instance=ExtResource("9_3fk8m")]
+position = Vector2(3429, -331.99997)
+scale = Vector2(6.425, 6.425)
+
+[node name="Coin3" parent="Sortables/Props" instance=ExtResource("9_3fk8m")]
+position = Vector2(2585, -295)
+scale = Vector2(6.425, 6.425)
+
+[node name="Trap_1" parent="Sortables/Props" instance=ExtResource("10_6qohv")]
+process_mode = 4
+position = Vector2(8773, -144)
+rotation = 3.1415927
+
+[node name="Trap1Damage" type="Area2D" parent="Sortables/Props"]
+position = Vector2(6930, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage2" type="Area2D" parent="Sortables/Props"]
+position = Vector2(7081, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage2"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage2"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage3" type="Area2D" parent="Sortables/Props"]
+position = Vector2(7238, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage3"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage3"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage4" type="Area2D" parent="Sortables/Props"]
+position = Vector2(7395, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage4"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage4"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage5" type="Area2D" parent="Sortables/Props"]
+position = Vector2(7552, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage5"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage5"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage6" type="Area2D" parent="Sortables/Props"]
+position = Vector2(11686, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage6"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage6"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage7" type="Area2D" parent="Sortables/Props"]
+position = Vector2(11837, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage7"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage7"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage8" type="Area2D" parent="Sortables/Props"]
+position = Vector2(11994, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage8"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage8"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage9" type="Area2D" parent="Sortables/Props"]
+position = Vector2(12151, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage9"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage9"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage10" type="Area2D" parent="Sortables/Props"]
+position = Vector2(12308, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage10"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage10"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage11" type="Area2D" parent="Sortables/Props"]
+position = Vector2(13381, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage11"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage11"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage12" type="Area2D" parent="Sortables/Props"]
+position = Vector2(13532, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage12"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage12"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage13" type="Area2D" parent="Sortables/Props"]
+position = Vector2(13689, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage13"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage13"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage14" type="Area2D" parent="Sortables/Props"]
+position = Vector2(13846, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage14"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage14"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage15" type="Area2D" parent="Sortables/Props"]
+position = Vector2(14003, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage15"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage15"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage16" type="Area2D" parent="Sortables/Props"]
+position = Vector2(16784, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage16"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage16"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage17" type="Area2D" parent="Sortables/Props"]
+position = Vector2(16935, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage17"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage17"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage18" type="Area2D" parent="Sortables/Props"]
+position = Vector2(17092, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage18"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage18"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage19" type="Area2D" parent="Sortables/Props"]
+position = Vector2(17249, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage19"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage19"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Trap1Damage20" type="Area2D" parent="Sortables/Props"]
+position = Vector2(17406, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/Trap1Damage20"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/Trap1Damage20"]
+position = Vector2(0, -59)
+texture = ExtResource("12_5rtmd")
+
+[node name="Spike" parent="Sortables/Props" instance=ExtResource("13_fcxnj")]
+process_mode = 4
+position = Vector2(1315, 1111)
+
+[node name="SpikeDamage" type="Area2D" parent="Sortables/Props"]
+position = Vector2(8955, -101)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_18isv")
+damage = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sortables/Props/SpikeDamage"]
+shape = SubResource("RectangleShape2D_i4puh")
+
+[node name="Spear" type="Sprite2D" parent="Sortables/Props/SpikeDamage"]
+position = Vector2(0, -58)
+texture = ExtResource("12_5rtmd")
+
+[node name="Enemies" type="Node2D" parent="Sortables"]
+y_sort_enabled = true
+
+[node name="skeleton_orange" parent="Sortables/Enemies" instance=ExtResource("4_yvyp7")]
+position = Vector2(2241, -253)
+patrol_speed = 200.0
+chase_speed = 600.0
+patrol_distance = 1000.0
+chase_distance = 1000.0
+platformer_use_line_of_sight = true
+
+[node name="PointLight2D" parent="Sortables/Enemies/skeleton_orange/body" index="8"]
+visible = false
+
+[node name="AwarenessIndicator" parent="Sortables/Enemies/skeleton_orange/body" index="9"]
+offset_left = -12.0
+offset_top = -220.0
+offset_right = -12.0
+offset_bottom = -220.0
+
+[node name="skeleton_orange2" parent="Sortables/Enemies" instance=ExtResource("4_yvyp7")]
+position = Vector2(9553, -194)
+patrol_speed = 200.0
+chase_speed = 600.0
+patrol_distance = 1000.0
+chase_distance = 1000.0
+platformer_use_line_of_sight = true
+
+[node name="PointLight2D" parent="Sortables/Enemies/skeleton_orange2/body" index="8"]
+visible = false
+
+[node name="AwarenessIndicator" parent="Sortables/Enemies/skeleton_orange2/body" index="9"]
+offset_left = -12.0
+offset_top = -220.0
+offset_right = -12.0
+offset_bottom = -220.0
+
+[node name="skeleton_orange3" parent="Sortables/Enemies" instance=ExtResource("4_yvyp7")]
+position = Vector2(8111, -901)
+patrol_speed = 200.0
+chase_speed = 600.0
+patrol_distance = 1000.0
+chase_distance = 1000.0
+platformer_use_line_of_sight = true
+
+[node name="PointLight2D" parent="Sortables/Enemies/skeleton_orange3/body" index="8"]
+visible = false
+
+[node name="AwarenessIndicator" parent="Sortables/Enemies/skeleton_orange3/body" index="9"]
+offset_left = -12.0
+offset_top = -220.0
+offset_right = -12.0
+offset_bottom = -220.0
+
+[node name="skeleton_orange4" parent="Sortables/Enemies" instance=ExtResource("4_yvyp7")]
+position = Vector2(19115, -175)
+patrol_speed = 200.0
+chase_speed = 600.0
+patrol_distance = 1000.0
+chase_distance = 1000.0
+platformer_use_line_of_sight = true
+
+[node name="PointLight2D" parent="Sortables/Enemies/skeleton_orange4/body" index="8"]
+visible = false
+
+[node name="AwarenessIndicator" parent="Sortables/Enemies/skeleton_orange4/body" index="9"]
+offset_left = -12.0
+offset_top = -220.0
+offset_right = -12.0
+offset_bottom = -220.0
+
+[node name="skeleton_orange5" parent="Sortables/Enemies" instance=ExtResource("4_yvyp7")]
+position = Vector2(24479, -175)
+patrol_speed = 200.0
+chase_speed = 600.0
+patrol_distance = 1000.0
+chase_distance = 1000.0
+platformer_use_line_of_sight = true
+
+[node name="PointLight2D" parent="Sortables/Enemies/skeleton_orange5/body" index="8"]
+visible = false
+
+[node name="AwarenessIndicator" parent="Sortables/Enemies/skeleton_orange5/body" index="9"]
+offset_left = -12.0
+offset_top = -220.0
+offset_right = -12.0
+offset_bottom = -220.0
+
+[node name="TDPlayer" parent="Sortables" instance=ExtResource("2_fhg1k")]
+position = Vector2(-391, -764)
+movement_mode = 1
+platformer_gravity = 800.0
+platformer_jump_velocity = -800.0
+platformer_run_speed = 1600.0
+platformer_anim_speed_scale = 10.0
+
+[node name="Camera2D" type="Camera2D" parent="Sortables/TDPlayer"]
+limit_left = -520
+limit_top = -5000
+limit_right = 26985
+limit_bottom = 115
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("health_bar", "coin_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("17_hdnug")
+health_bar = NodePath("ProgressBar")
+coin_label = NodePath("Label")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -324.0
+offset_bottom = 106.0
+grow_horizontal = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+modulate = Color(0.52156866, 1, 0.19607843, 1)
+layout_mode = 1
+offset_left = 61.999996
+offset_top = 37.000004
+offset_right = 352.0
+offset_bottom = 64.000015
+scale = Vector2(3.225, 3.225)
+theme_override_colors/font_color = Color(0.30297032, 0.39887872, 0.08898588, 1)
+theme_override_colors/font_outline_color = Color(0, 0.8901961, 0, 1)
+theme_override_constants/outline_size = 0
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -274.0
+offset_right = -26.0
+offset_bottom = 91.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 66
+text = "Coins: 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -205.0
+offset_top = -111.0
+offset_right = 206.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 41
+text = "Collect the coins, avoid the traps, then reach the exit."
+
+[node name="Timer" type="Timer" parent="CanvasLayer/HUD"]
+wait_time = 60.0
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 61
+metadata/_edit_use_anchors_ = true
+
+[node name="GameOverPanel" type="Panel" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -105.0
+offset_right = 190.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/GameOverPanel"]
+layout_mode = 1
+offset_left = 28.0
+offset_top = 22.0
+offset_right = 352.0
+offset_bottom = 58.0
+text = "You Died"
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="CanvasLayer/GameOverPanel"]
+layout_mode = 1
+offset_left = 52.0
+offset_top = 128.0
+offset_right = 178.0
+offset_bottom = 170.0
+text = "Retry"
+
+[node name="MenuButton" type="Button" parent="CanvasLayer/GameOverPanel"]
+layout_mode = 1
+offset_left = 202.0
+offset_top = 128.0
+offset_right = 328.0
+offset_bottom = 170.0
+text = "Menu"
+
+[node name="WinPanel" type="Panel" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -205.0
+offset_top = -110.0
+offset_right = 205.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/WinPanel"]
+layout_mode = 1
+offset_left = 28.0
+offset_top = 22.0
+offset_right = 382.0
+offset_bottom = 60.0
+text = "Level Clear!"
+horizontal_alignment = 1
+
+[node name="ReplayButton" type="Button" parent="CanvasLayer/WinPanel"]
+layout_mode = 1
+offset_left = 62.0
+offset_top = 136.0
+offset_right = 188.0
+offset_bottom = 178.0
+text = "Replay"
+
+[node name="MenuButton" type="Button" parent="CanvasLayer/WinPanel"]
+layout_mode = 1
+offset_left = 222.0
+offset_top = 136.0
+offset_right = 348.0
+offset_bottom = 178.0
+text = "Menu"
+
+[node name="Start" type="Marker2D" parent="."]
+position = Vector2(-389, -888)
+
+[node name="End" type="Marker2D" parent="."]
+position = Vector2(26667, -98)
+
+[node name="Exitlight" type="PointLight2D" parent="End"]
+position = Vector2(0, -82)
+rotation = -3.1415927
+scale = Vector2(14.89568, 10.9650345)
+color = Color(1, 0.47843137, 0.47843137, 1)
+texture = SubResource("GradientTexture2D_18isv")
+script = ExtResource("18_5qrc7")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasModulate"]
+environment = SubResource("Environment_5rtmd")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="SkyBackgroundNight" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(1363, -1093)
+texture = ExtResource("17_5qrc7")
+
+[node name="SkyBackgroundNight2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(5203, -1093)
+texture = ExtResource("17_5qrc7")
+
+[node name="SkyBackgroundNight" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/SkyBackgroundNight2"]
+position = Vector2(3838, 0)
+texture = ExtResource("17_5qrc7")
+
+[node name="SkyBackgroundNight2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/SkyBackgroundNight2"]
+position = Vector2(7678, 0)
+texture = ExtResource("17_5qrc7")
+
+[node name="SkyBackgroundNight3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/SkyBackgroundNight2"]
+position = Vector2(11518, 0)
+texture = ExtResource("17_5qrc7")
+
+[node name="SkyBackgroundNight4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/SkyBackgroundNight2"]
+position = Vector2(15358, 0)
+texture = ExtResource("17_5qrc7")
+
+[node name="SkyBackgroundNight5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/SkyBackgroundNight2"]
+position = Vector2(19198, 0)
+texture = ExtResource("17_5qrc7")
+
+[node name="SkyBackgroundNight6" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/SkyBackgroundNight2"]
+position = Vector2(23038, 0)
+texture = ExtResource("17_5qrc7")
+
+[node name="ENV" type="Node2D" parent="."]
+z_index = -1
+
+[node name="BgAssetsNight3" type="Sprite2D" parent="ENV"]
+position = Vector2(6437, -222)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2584, 1720, 856, 392)
+
+[node name="BgAssetsNight4" type="Sprite2D" parent="ENV"]
+position = Vector2(11183, -222)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2584, 1720, 856, 392)
+
+[node name="BgAssetsNight6" type="Sprite2D" parent="ENV"]
+position = Vector2(12789, -222)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2584, 1720, 856, 392)
+
+[node name="BgAssetsNight7" type="Sprite2D" parent="ENV"]
+position = Vector2(14501, -222)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2584, 1720, 856, 392)
+
+[node name="BgAssetsNight35" type="Sprite2D" parent="ENV"]
+position = Vector2(17913, -222)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2584, 1720, 856, 392)
+
+[node name="BgAssetsNight38" type="Sprite2D" parent="ENV"]
+position = Vector2(22641, -222)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2584, 1720, 856, 392)
+
+[node name="BgAssetsNight30" type="Sprite2D" parent="ENV"]
+position = Vector2(15373, -246)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(177, 486, 554, 434)
+
+[node name="BgAssetsNight32" type="Sprite2D" parent="ENV"]
+position = Vector2(15827, -351)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(734, 196, 214, 1023)
+
+[node name="BgAssetsNight33" type="Sprite2D" parent="ENV"]
+position = Vector2(16188, -494)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(734, 196, 214, 1023)
+
+[node name="BgAssetsNight34" type="Sprite2D" parent="ENV"]
+position = Vector2(16544, -545)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(734, 196, 214, 1023)
+
+[node name="BgAssetsNight11" type="Sprite2D" parent="ENV"]
+position = Vector2(503, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight12" type="Sprite2D" parent="ENV"]
+position = Vector2(2106, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight13" type="Sprite2D" parent="ENV"]
+position = Vector2(3691, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight14" type="Sprite2D" parent="ENV"]
+position = Vector2(5277, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight15" type="Sprite2D" parent="ENV"]
+position = Vector2(6879, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight18" type="Sprite2D" parent="ENV"]
+position = Vector2(8482, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight19" type="Sprite2D" parent="ENV"]
+position = Vector2(10072, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight20" type="Sprite2D" parent="ENV"]
+position = Vector2(11671, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight21" type="Sprite2D" parent="ENV"]
+position = Vector2(13252, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight22" type="Sprite2D" parent="ENV"]
+position = Vector2(14844, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight23" type="Sprite2D" parent="ENV"]
+position = Vector2(16429, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight24" type="Sprite2D" parent="ENV"]
+position = Vector2(18015, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight25" type="Sprite2D" parent="ENV"]
+position = Vector2(19617, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight26" type="Sprite2D" parent="ENV"]
+position = Vector2(21220, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight27" type="Sprite2D" parent="ENV"]
+position = Vector2(22810, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight28" type="Sprite2D" parent="ENV"]
+position = Vector2(24409, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight29" type="Sprite2D" parent="ENV"]
+position = Vector2(25990, 17)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight9" type="Sprite2D" parent="ENV"]
+position = Vector2(8076, -411)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(144, 1488, 1096, 776)
+
+[node name="BgAssetsNight10" type="Sprite2D" parent="ENV"]
+position = Vector2(9705, -411)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(144, 1488, 1096, 776)
+
+[node name="BgAssetsNight16" type="Sprite2D" parent="ENV"]
+z_index = -1
+position = Vector2(2427, -475)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(61, 2381, 1951, 1073)
+
+[node name="BgAssetsNight36" type="Sprite2D" parent="ENV"]
+z_index = -1
+position = Vector2(20018, -475)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(61, 2381, 1951, 1073)
+
+[node name="BgAssetsNight37" type="Sprite2D" parent="ENV"]
+z_index = -1
+position = Vector2(25603, -475)
+texture = ExtResource("18_3fk8m")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(61, 2381, 1951, 1073)
+
+[node name="BgAssetsNight17" type="Sprite2D" parent="ENV"]
+position = Vector2(-427, -209)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(3784, 240, 288, 752)
+
+[node name="BgAssetsNight39" type="Sprite2D" parent="ENV"]
+position = Vector2(26919, -209)
+texture = ExtResource("18_3fk8m")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(3784, 240, 288, 752)
+
+[node name="BgAssetsNight31" type="Sprite2D" parent="ENV"]
+position = Vector2(-675, -945)
+texture = ExtResource("18_3fk8m")
+region_enabled = true
+region_rect = Rect2(3784, 240, 288, 752)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ENV"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ENV/StaticBody2D"]
+polygon = PackedVector2Array(-819, -1326, -539, -1319, -529, -580, -287, -580, -284, -40, 6052, -26, 6052, -361, 6835, -371, 6835, -30, 10818, -41, 10797, -371, 11568, -369, 11568, -25, 12418, -28, 12405, -369, 13196, -378, 13181, -24, 14133, -28, 14109, -356, 14902, -363, 14874, -24, 15117, -33, 15112, -446, 15627, -448, 15635, -37, 15721, -45, 15723, -847, 15925, -841, 15925, -35, 16088, -39, 16094, -993, 16285, -993, 16289, -43, 16450, -43, 16443, -1046, 16641, -1042, 16645, -37, 17545, -41, 17522, -363, 18308, -350, 18293, -39, 22283, -36, 22260, -354, 23056, -369, 23016, -29, 26761, -33, 26776, -580, 27057, -576, 27065, 164, -577, 152)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ENV/StaticBody2D"]
+position = Vector2(8082, -669)
+shape = SubResource("RectangleShape2D_d5jr3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ENV/StaticBody2D"]
+position = Vector2(9709, -669)
+shape = SubResource("RectangleShape2D_d5jr3")
+
+[editable path="Sortables/Enemies/skeleton_orange"]
+[editable path="Sortables/Enemies/skeleton_orange2"]
+[editable path="Sortables/Enemies/skeleton_orange3"]
+[editable path="Sortables/Enemies/skeleton_orange4"]
+[editable path="Sortables/Enemies/skeleton_orange5"]
+[editable path="Sortables/TDPlayer"]

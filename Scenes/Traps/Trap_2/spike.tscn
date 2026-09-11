@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bthojiue67ein"]
+
+[ext_resource type="Script" uid="uid://d22jblq0vc4kt" path="res://Scenes/Traps/Trap_2/spike.gd" id="1_6eg13"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_h33kc"]
+size = Vector3(0.5, 0.59, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6eg13"]
+size = Vector2(9.69, 19.025)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h33kc"]
+size = Vector2(9.28, 8.47)
+
+[node name="Spike" type="CharacterBody2D" node_paths=PackedStringArray("player_detector")]
+collision_layer = 0
+script = ExtResource("1_6eg13")
+player_detector = NodePath("ShapeCast2D")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(16, 32.5)
+mesh = SubResource("PrismMesh_h33kc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.04, 0)
+shape = SubResource("RectangleShape2D_6eg13")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_h33kc")
+target_position = Vector2(0, 112)
+collision_mask = 2

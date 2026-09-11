@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://clvogvvueear1"]
+
+[ext_resource type="Texture2D" uid="uid://chhosyq80pvhx" path="res://Assets/PlatformAssets/props 2.png" id="1_fi31y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5u3lg"]
+size = Vector2(207.99997, 417.00003)
+
+[node name="Prop" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -117)
+texture = ExtResource("1_fi31y")
+region_enabled = true
+region_rect = Rect2(4207, 665, 441, 232)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -110)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_5u3lg")

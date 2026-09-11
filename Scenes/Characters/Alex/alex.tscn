@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Characters/Player/player.tscn" id="1_player"]
+[ext_resource type="Resource" path="res://Resources/Characters/alex_character_data.tres" id="2_data"]
+
+[node name="Alex" instance=ExtResource("1_player")]
+character_data = ExtResource("2_data")
+
+[node name="Sprite" parent="Body" index="1"]
+modulate = Color(0.38, 0.78, 1, 1)

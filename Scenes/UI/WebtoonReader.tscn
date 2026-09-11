@@ -1,0 +1,198 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckjdbatpejk4p"]
+
+[ext_resource type="Script" uid="uid://bsiad7jhww1wm" path="res://Scripts/WebtoonReader.gd" id="1_abugw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frbhw"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abugw"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="WebtoonReader" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_abugw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 64)
+
+[node name="CenterContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="PanelContainer" type="VBoxContainer" parent="ScrollContainer/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="UI_Layer" type="CanvasLayer" parent="."]
+
+[node name="TopBar" type="Panel" parent="UI_Layer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="ChapterTitle" type="Label" parent="UI_Layer/TopBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.0
+offset_right = 94.0
+offset_bottom = 55.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+
+[node name="ScrollHint" type="Label" parent="UI_Layer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="TransitionLayer" type="CanvasLayer" parent="."]
+
+[node name="TransitionOverlay" type="Control" parent="TransitionLayer"]
+layout_mode = 3
+anchor_right = 0.256
+anchor_bottom = 0.105000004
+offset_right = -144.32
+offset_bottom = -117.5
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TopBar" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TopBar"]
+layout_mode = 2
+
+[node name="HomeButton" type="Button" parent="CanvasLayer/TopBar/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "🏠"
+
+[node name="PrevButton" type="Button" parent="CanvasLayer/TopBar/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "◀"
+
+[node name="ChapterLabel" type="Label" parent="CanvasLayer/TopBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "Chapter 1"
+horizontal_alignment = 1
+
+[node name="NextButton" type="Button" parent="CanvasLayer/TopBar/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "▶"
+
+[node name="ChapterSelectButton" type="Button" parent="CanvasLayer/TopBar/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "📖"
+
+[node name="ZoomBar" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -81.0
+offset_top = -123.0
+offset_bottom = -83.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ZoomOut" type="Button" parent="CanvasLayer/ZoomBar"]
+layout_mode = 2
+flat = true
+
+[node name="ZoomLabel" type="Label" parent="CanvasLayer/ZoomBar"]
+layout_mode = 2
+text = "Zoom"
+
+[node name="ZoomIn" type="Button" parent="CanvasLayer/ZoomBar"]
+layout_mode = 2
+flat = true
+
+[node name="ZoomReset" type="Button" parent="CanvasLayer/ZoomBar"]
+layout_mode = 2
+flat = true
+
+[node name="ScrollIndicator" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = 941.0
+offset_right = -30.0
+offset_bottom = -139.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_frbhw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_abugw")
+min_value = 50.0
+max_value = 250.0
+step = 15.0
+value = 110.0
+fill_mode = 3
+
+[node name="CoinDisplay" type="CanvasLayer" parent="."]
+
+[node name="CoinIcon" type="Label" parent="CoinDisplay"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -101.0
+offset_top = 17.0
+offset_right = -46.0
+offset_bottom = 72.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 40
+text = "🪙"
+horizontal_alignment = 1
+
+[node name="CoinLabel" type="Label" parent="CoinDisplay"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -63.0
+offset_top = 75.0
+offset_right = -23.0
+offset_bottom = 130.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 2

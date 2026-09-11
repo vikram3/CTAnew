@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://rg6eyl8kgtdj"]
+
+[ext_resource type="Script" uid="uid://dv4j0qygk8lpc" path="res://Scenes/Scene_Manager/trigger_area/transition_area.gd" id="1_sd7tf"]
+
+[node name="TransitionArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_sd7tf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

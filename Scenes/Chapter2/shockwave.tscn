@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Chapter2/Shockwave.gd" id="1_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wave"]
+radius = 110.0
+
+[node name="Shockwave" type="Area2D" node_paths=PackedStringArray("collision_shape")]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_script")
+collision_shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wave")

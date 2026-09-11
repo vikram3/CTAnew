@@ -1,0 +1,98 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Chapter2/Chapter2SegmentRoot.gd" id="1_root"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/Levels/LevelController.gd" id="2_level"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/Levels/LevelConfig.gd" id="3_config"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/Objectives/ObjectiveController.gd" id="4_objectives"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/Objectives/SurvivalObjective.gd" id="5_survival"]
+[ext_resource type="PackedScene" path="res://Scenes/Levels/td_player.tscn" id="6_player"]
+[ext_resource type="PackedScene" path="res://Scenes/Chapter2/big_boss.tscn" id="7_boss"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/chapter2_hud.tscn" id="8_hud"]
+
+[sub_resource type="Resource" id="LevelConfig_boss_dodge"]
+script = ExtResource("3_config")
+level_id = &"CH02_S02_BossDodge"
+display_name = "Boss Dodge"
+pause_on_finish = true
+success_message = "CT survived Big Boss."
+failure_message = "Big Boss caught CT."
+
+[sub_resource type="RectangleShape2D" id="WallHorizontal"]
+size = Vector2(1000, 28)
+
+[sub_resource type="RectangleShape2D" id="WallVertical"]
+size = Vector2(28, 580)
+
+[node name="CH02_S02_BossDodge" type="Node2D" node_paths=PackedStringArray("level_controller")]
+script = ExtResource("1_root")
+level_controller = NodePath("LevelController")
+
+[node name="Backdrop" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-520, -300, 520, -300, 520, 300, -520, 300)
+color = Color(0.16, 0.1, 0.08, 1)
+
+[node name="Arena" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-430, -230, -230, -270, 220, -270, 440, -100, 440, 100, 220, 270, -230, 270, -430, 230)
+color = Color(0.28, 0.2, 0.16, 1)
+
+[node name="Bounds" type="Node2D" parent="."]
+
+[node name="Top" type="StaticBody2D" parent="Bounds"]
+position = Vector2(0, -285)
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Top"]
+shape = SubResource("WallHorizontal")
+
+[node name="Bottom" type="StaticBody2D" parent="Bounds"]
+position = Vector2(0, 285)
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Bottom"]
+shape = SubResource("WallHorizontal")
+
+[node name="Left" type="StaticBody2D" parent="Bounds"]
+position = Vector2(-490, 0)
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Left"]
+shape = SubResource("WallVertical")
+
+[node name="Right" type="StaticBody2D" parent="Bounds"]
+position = Vector2(490, 0)
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Right"]
+shape = SubResource("WallVertical")
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+position = Vector2(-260, 110)
+
+[node name="TDPlayer" parent="." instance=ExtResource("6_player")]
+position = Vector2(-260, 110)
+
+[node name="BigBoss" parent="." instance=ExtResource("7_boss")]
+position = Vector2(340, -20)
+
+[node name="ObjectiveController" type="Node" parent="." node_paths=PackedStringArray("objectives")]
+script = ExtResource("4_objectives")
+objectives = [NodePath("SurvivalObjective")]
+
+[node name="SurvivalObjective" type="Node" parent="ObjectiveController"]
+script = ExtResource("5_survival")
+objective_id = &"survive"
+duration = 90.0
+
+[node name="LevelController" type="Node" parent="." node_paths=PackedStringArray("player", "player_start", "objective_controller", "win_panel", "game_over_panel")]
+script = ExtResource("2_level")
+config = SubResource("LevelConfig_boss_dodge")
+player = NodePath("../TDPlayer")
+player_start = NodePath("../PlayerStart")
+objective_controller = NodePath("../ObjectiveController")
+win_panel = NodePath("../HUD/WinPanel")
+game_over_panel = NodePath("../HUD/GameOverPanel")
+
+[node name="HUD" parent="." instance=ExtResource("8_hud")]
+
+[node name="Status" parent="HUD" index="0"]
+text = "Survive Big Boss for 90 seconds."

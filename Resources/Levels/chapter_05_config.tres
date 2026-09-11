@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Progression/ChapterConfig.gd" id="1_chapter"]
+[ext_resource type="Script" path="res://Scripts/Progression/SegmentConfig.gd" id="2_segment"]
+
+[sub_resource type="Resource" id="Segment_0"]
+script = ExtResource("2_segment")
+before_page = 1
+transition_text = "The Queen stepped in - but those bulls aren't done yet!"
+game_index = 0
+coins_reward = 40
+
+[sub_resource type="Resource" id="Segment_1"]
+script = ExtResource("2_segment")
+before_page = 117
+transition_text = "Alex accepted the duel... somebody's gotta warm up for him!"
+game_index = 1
+coins_reward = 40
+
+[resource]
+script = ExtResource("1_chapter")
+chapter_number = 5
+page_count = 125
+unlock_cost = 200
+segments = Array[ExtResource("2_segment")]([SubResource("Segment_0"), SubResource("Segment_1")])

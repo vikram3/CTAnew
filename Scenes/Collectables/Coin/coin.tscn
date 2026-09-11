@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=3 uid="uid://dcpgodgyy0ael"]
+
+[ext_resource type="Script" uid="uid://2ppq04lyuatm" path="res://Scenes/Collectables/Coin/coin.gd" id="1_dqvnt"]
+[ext_resource type="Texture2D" uid="uid://cbc6humb684oc" path="res://Assets/Coin/Coin-1.png.png" id="1_s4osw"]
+[ext_resource type="Texture2D" uid="uid://e1d3sv2j622v" path="res://Assets/Coin/Coin-2.png.png" id="2_dqvnt"]
+[ext_resource type="Texture2D" uid="uid://5qdn5aylsqwt" path="res://Assets/Coin/Coin-3.png.png" id="3_sxiue"]
+[ext_resource type="Texture2D" uid="uid://b1vph4jcg622d" path="res://Assets/Coin/Coin-4.png.png" id="4_3hfgv"]
+[ext_resource type="Texture2D" uid="uid://cff3blu8g3tm3" path="res://Assets/Coin/Coin-5.png.png" id="5_tx6la"]
+[ext_resource type="Texture2D" uid="uid://cptgyuwnradad" path="res://Assets/Coin/Coin-6.png.png" id="6_t2vox"]
+[ext_resource type="Texture2D" uid="uid://b5x3jqb2e0ppc" path="res://Assets/Coin/Coin-7.png.png" id="7_jv3hf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1fgso"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s4osw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dqvnt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sxiue")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3hfgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tx6la")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_t2vox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jv3hf")
+}],
+"loop": true,
+"name": &"anim",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4osw"]
+radius = 13.0
+height = 26.0
+
+[sub_resource type="Animation" id="Animation_dqvnt"]
+resource_name = "animated"
+length = 0.7045
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"anim"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:shape:radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [13.0, 10.0, 7.0, 3.0, 7.0, 11.0, 13.0]
+}
+
+[sub_resource type="Animation" id="Animation_sxiue"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"anim"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:shape:radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [13.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3hfgv"]
+_data = {
+&"RESET": SubResource("Animation_sxiue"),
+&"animated": SubResource("Animation_dqvnt")
+}
+
+[node name="Coin" type="Area2D" node_paths=PackedStringArray("anim")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_dqvnt")
+anim = NodePath("AnimationPlayer")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.4166667, 0.4166667)
+sprite_frames = SubResource("SpriteFrames_1fgso")
+animation = &"anim"
+speed_scale = 1.085
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_s4osw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3hfgv")
+}

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Progression/ChapterConfig.gd" id="1_chapter"]
+[ext_resource type="Script" path="res://Scripts/Progression/SegmentConfig.gd" id="2_segment"]
+
+[sub_resource type="Resource" id="Segment_0"]
+script = ExtResource("2_segment")
+before_page = 6
+transition_text = "Alex won! Now the coins are flowing - grab what you can!"
+game_index = 0
+coins_reward = 45
+
+[sub_resource type="Resource" id="Segment_1"]
+script = ExtResource("2_segment")
+before_page = 13
+transition_text = "The ship is going DOWN - hold on and get to safety!"
+game_index = 1
+coins_reward = 45
+
+[resource]
+script = ExtResource("1_chapter")
+chapter_number = 7
+page_count = 107
+unlock_cost = 300
+segments = Array[ExtResource("2_segment")]([SubResource("Segment_0"), SubResource("Segment_1")])

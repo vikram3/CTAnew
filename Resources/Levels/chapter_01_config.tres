@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Progression/ChapterConfig.gd" id="1_chapter"]
+[ext_resource type="Script" path="res://Scripts/Progression/SegmentConfig.gd" id="2_segment"]
+
+[sub_resource type="Resource" id="Segment_0"]
+script = ExtResource("2_segment")
+before_page = 15
+transition_text = "Time to grab those coins before anyone notices..."
+game_index = 0
+coins_reward = 30
+scene_path = "res://Scenes/Levels/lev_1.tscn"
+
+[sub_resource type="Resource" id="Segment_1"]
+script = ExtResource("2_segment")
+before_page = 48
+transition_text = "Those coins are MINE - gotta beat him there!"
+game_index = 1
+coins_reward = 30
+scene_path = "res://Scenes/Levels/lev_2.tscn"
+
+[resource]
+script = ExtResource("1_chapter")
+chapter_number = 1
+page_count = 85
+unlock_cost = 0
+segments = Array[ExtResource("2_segment")]([SubResource("Segment_0"), SubResource("Segment_1")])

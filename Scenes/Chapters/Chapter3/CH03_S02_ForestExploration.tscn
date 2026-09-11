@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Chapter34/Chapter34Scenario.gd" id="1"]
+[ext_resource type="PackedScene" path="res://Scenes/Levels/td_player.tscn" id="2"]
+
+[node name="CH03_S02_ForestExploration" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1")
+scenario = "exploration"
+required_coins = 35
+player = NodePath("TDPlayer")
+
+[node name="TDPlayer" parent="." instance=ExtResource("2")]

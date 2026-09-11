@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://b31g58dhfkn7t"]
+
+[ext_resource type="PackedScene" uid="uid://d05pgtiygcxgi" path="res://Scenes/Camera/cam_root.tscn" id="1_4bcni"]
+[ext_resource type="Script" uid="uid://bd8pn0j7g6gx" path="res://Scenes/Scene_Manager/game_root.gd" id="1_smaqs"]
+[ext_resource type="Script" uid="uid://co8gnqgk34iy2" path="res://Scenes/Scene_Manager/scene_loader/scene_loader.gd" id="2_4ko4x"]
+[ext_resource type="PackedScene" uid="uid://b8u54nwif8s4d" path="res://Scenes/Characters/Player/player.tscn" id="2_smaqs"]
+[ext_resource type="Script" uid="uid://b5vptsbjqbd8v" path="res://Scenes/Scene_Manager/fade/fade_layer.gd" id="5_4iil7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ko4x"]
+size = Vector2(25, 36)
+
+[node name="GameRoot" type="Node2D"]
+script = ExtResource("1_smaqs")
+
+[node name="FadeLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("rect")]
+script = ExtResource("5_4iil7")
+rect = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="FadeLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SceneLoader" type="Node" parent="." node_paths=PackedStringArray("cam") groups=["scene_loader"]]
+script = ExtResource("2_4ko4x")
+level_container = NodePath("../LevelContainer")
+fade_layer = NodePath("../FadeLayer")
+player = NodePath("../Player")
+cam = NodePath("../Cam_Root/Camera2D")
+
+[node name="LevelContainer" type="Node2D" parent="."]
+
+[node name="Cam_Root" parent="." instance=ExtResource("1_4bcni")]
+
+[node name="Dead_Zone" parent="Cam_Root" index="1"]
+visible = true
+
+[node name="CollisionShape2D" parent="Cam_Root/Dead_Zone" index="0"]
+shape = SubResource("RectangleShape2D_4ko4x")
+
+[node name="Player" parent="." instance=ExtResource("2_smaqs")]
+
+[editable path="Cam_Root"]

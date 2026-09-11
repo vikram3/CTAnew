@@ -1,0 +1,162 @@
+[gd_scene load_steps=17 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Chapter2/Chapter2SegmentRoot.gd" id="1_root"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/Levels/LevelController.gd" id="2_level"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/Levels/LevelConfig.gd" id="3_config"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/Objectives/ObjectiveController.gd" id="4_objectives"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/Objectives/WaveObjective.gd" id="5_wave_objective"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/Systems/EnemySpawner.gd" id="6_spawner"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/Systems/WaveController.gd" id="7_waves"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/Systems/WaveConfig.gd" id="8_wave_config"]
+[ext_resource type="Script" path="res://Scripts/Chapter2/MainArenaGate.gd" id="9_gate"]
+[ext_resource type="Script" path="res://Scripts/Chapter2/BackgroundDuel.gd" id="10_duel"]
+[ext_resource type="PackedScene" path="res://Scenes/Levels/td_player.tscn" id="11_player"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/Enemies/skeleton/orange/skeleton_orange.tscn" id="12_skull"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/chapter2_hud.tscn" id="13_hud"]
+
+[sub_resource type="Resource" id="LevelConfig_reinforcement"]
+script = ExtResource("3_config")
+level_id = &"CH02_S03_ReinforcementWave"
+display_name = "Reinforcement Wave"
+pause_on_finish = true
+success_message = "The reinforcements have stopped."
+failure_message = "The main arena was breached."
+
+[sub_resource type="Resource" id="Wave1"]
+script = ExtResource("8_wave_config")
+enemy_count = 3
+spawn_stagger_time = 0.8
+inter_wave_delay = 2.0
+
+[sub_resource type="Resource" id="Wave2"]
+script = ExtResource("8_wave_config")
+enemy_count = 4
+spawn_stagger_time = 0.65
+inter_wave_delay = 2.0
+
+[sub_resource type="Resource" id="Wave3"]
+script = ExtResource("8_wave_config")
+enemy_count = 5
+spawn_stagger_time = 0.5
+inter_wave_delay = 0.0
+
+[sub_resource type="RectangleShape2D" id="WallHorizontal"]
+size = Vector2(1040, 28)
+
+[sub_resource type="RectangleShape2D" id="WallVertical"]
+size = Vector2(28, 560)
+
+[sub_resource type="RectangleShape2D" id="GateShape"]
+size = Vector2(30, 420)
+
+[node name="CH02_S03_ReinforcementWave" type="Node2D" node_paths=PackedStringArray("level_controller", "wave_controller")]
+script = ExtResource("1_root")
+level_controller = NodePath("LevelController")
+wave_controller = NodePath("WaveController")
+
+[node name="Backdrop" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-520, -280, 520, -280, 520, 280, -520, 280)
+color = Color(0.12, 0.15, 0.12, 1)
+
+[node name="Corridor" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-460, -210, 460, -210, 460, 210, -460, 210)
+color = Color(0.22, 0.27, 0.17, 1)
+
+[node name="BackgroundDuel" type="Node2D" parent="."]
+position = Vector2(-330, -150)
+script = ExtResource("10_duel")
+
+[node name="Bounds" type="Node2D" parent="."]
+
+[node name="Top" type="StaticBody2D" parent="Bounds"]
+position = Vector2(0, -270)
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Top"]
+shape = SubResource("WallHorizontal")
+
+[node name="Bottom" type="StaticBody2D" parent="Bounds"]
+position = Vector2(0, 270)
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Bottom"]
+shape = SubResource("WallHorizontal")
+
+[node name="Left" type="StaticBody2D" parent="Bounds"]
+position = Vector2(-500, 0)
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Left"]
+shape = SubResource("WallVertical")
+
+[node name="Right" type="StaticBody2D" parent="Bounds"]
+position = Vector2(500, 0)
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Right"]
+shape = SubResource("WallVertical")
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+position = Vector2(-290, 40)
+
+[node name="TDPlayer" parent="." instance=ExtResource("11_player")]
+position = Vector2(-290, 40)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Spawn1" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(380, -110)
+
+[node name="Spawn2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(380, 0)
+
+[node name="Spawn3" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(380, 110)
+
+[node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_points", "spawn_parent")]
+script = ExtResource("6_spawner")
+enemy_scene = ExtResource("12_skull")
+spawn_points = [NodePath("../SpawnPoints/Spawn1"), NodePath("../SpawnPoints/Spawn2"), NodePath("../SpawnPoints/Spawn3")]
+spawn_parent = NodePath("../Enemies")
+initial_property_values = {"top_down_mode": true, "patrol_enabled": false, "gravity": 0.0, "chase_speed": 160.0}
+
+[node name="WaveController" type="Node" parent="." node_paths=PackedStringArray("enemy_spawner")]
+script = ExtResource("7_waves")
+enemy_spawner = NodePath("../EnemySpawner")
+wave_configs = [SubResource("Wave1"), SubResource("Wave2"), SubResource("Wave3")]
+
+[node name="MainArenaGate" type="Area2D" parent="." node_paths=PackedStringArray("wave_controller", "level_controller")]
+position = Vector2(-420, 0)
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("9_gate")
+wave_controller = NodePath("../WaveController")
+level_controller = NodePath("../LevelController")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainArenaGate"]
+shape = SubResource("GateShape")
+
+[node name="ObjectiveController" type="Node" parent="." node_paths=PackedStringArray("objectives")]
+script = ExtResource("4_objectives")
+objectives = [NodePath("WaveObjective")]
+
+[node name="WaveObjective" type="Node" parent="ObjectiveController" node_paths=PackedStringArray("wave_controller")]
+script = ExtResource("5_wave_objective")
+objective_id = &"waves"
+wave_controller = NodePath("../../WaveController")
+
+[node name="LevelController" type="Node" parent="." node_paths=PackedStringArray("player", "player_start", "objective_controller", "win_panel", "game_over_panel")]
+script = ExtResource("2_level")
+config = SubResource("LevelConfig_reinforcement")
+player = NodePath("../TDPlayer")
+player_start = NodePath("../PlayerStart")
+objective_controller = NodePath("../ObjectiveController")
+win_panel = NodePath("../HUD/WinPanel")
+game_over_panel = NodePath("../HUD/GameOverPanel")
+
+[node name="HUD" parent="." instance=ExtResource("13_hud")]
+
+[node name="Status" parent="HUD" index="0"]
+text = "Hold the line: clear three Skull waves."

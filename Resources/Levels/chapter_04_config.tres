@@ -1,0 +1,28 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Progression/ChapterConfig.gd" id="1_chapter"]
+[ext_resource type="Script" path="res://Scripts/Progression/SegmentConfig.gd" id="2_segment"]
+
+[sub_resource type="Resource" id="Segment_0"]
+script = ExtResource("2_segment")
+before_page = 7
+transition_text = "Horn is somewhere in these woods... keep moving!"
+game_index = 0
+coins_reward = 40
+scene_path = "res://Scenes/Chapters/Chapter4/CH04_S01_ForestEscape.tscn"
+
+[sub_resource type="Resource" id="Segment_1"]
+script = ExtResource("2_segment")
+before_page = 34
+transition_text = "A Barreldugo! Flex says get close - let's try it!"
+game_index = 1
+coins_reward = 40
+# The current scene is a non-completing placeholder. Keep this segment gated
+# until its required enemy-category objective can report level_completed.
+
+[resource]
+script = ExtResource("1_chapter")
+chapter_number = 4
+page_count = 100
+unlock_cost = 150
+segments = Array[ExtResource("2_segment")]([SubResource("Segment_0"), SubResource("Segment_1")])

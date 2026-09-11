@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb27i1jew5b4l"]
+
+[ext_resource type="Script" uid="uid://bpuurxfn25lwm" path="res://Scripts/achievement_popup.gd" id="1_sdmn2"]
+
+[node name="AchievementPopup" type="CanvasLayer"]
+script = ExtResource("1_sdmn2")
+
+[node name="PopupPanel" type="PanelContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupPanel"]
+layout_mode = 2
+
+[node name="IconLabel" type="Label" parent="PopupPanel/HBoxContainer"]
+layout_mode = 2
+text = "🛠️"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupPanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="TitleRow" type="HBoxContainer" parent="PopupPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BadgeLabel" type="Label" parent="PopupPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="PopupPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AchievementTitle" type="Label" parent="PopupPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Chapter 1 Clear!"
+
+[node name="AchievementDesc" type="Label" parent="PopupPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Complete Chapter 1"

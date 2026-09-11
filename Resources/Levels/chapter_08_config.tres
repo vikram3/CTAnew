@@ -1,0 +1,32 @@
+[gd_resource type="Resource" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Progression/ChapterConfig.gd" id="1_chapter"]
+[ext_resource type="Script" path="res://Scripts/Progression/SegmentConfig.gd" id="2_segment"]
+
+[sub_resource type="Resource" id="Segment_0"]
+script = ExtResource("2_segment")
+before_page = 8
+transition_text = "Welcome to Sand Land... and it does NOT look friendly."
+game_index = 0
+coins_reward = 50
+
+[sub_resource type="Resource" id="Segment_1"]
+script = ExtResource("2_segment")
+before_page = 21
+transition_text = "I signed WHAT?! Gotta do something - find those coins first!"
+game_index = 1
+coins_reward = 50
+
+[sub_resource type="Resource" id="Segment_2"]
+script = ExtResource("2_segment")
+before_page = 26
+transition_text = "A sand wormfish?! Everyone scatter!"
+game_index = 2
+coins_reward = 50
+
+[resource]
+script = ExtResource("1_chapter")
+chapter_number = 8
+page_count = 127
+unlock_cost = 350
+segments = Array[ExtResource("2_segment")]([SubResource("Segment_0"), SubResource("Segment_1"), SubResource("Segment_2")])

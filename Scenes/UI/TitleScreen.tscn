@@ -1,0 +1,265 @@
+[gd_scene load_steps=19 format=3 uid="uid://ck42ujmxyg137"]
+
+[ext_resource type="Script" uid="uid://dhpe7trtaspmj" path="res://Scripts/TitleScreen.gd" id="1_25ulu"]
+[ext_resource type="Texture2D" uid="uid://jmt4ylc5ys8g" path="res://Assets/webtoon_art/titlescreenart.jpg" id="2_k4b42"]
+[ext_resource type="Texture2D" uid="uid://dhxft828vc5rt" path="res://Assets/button/button_start_pressed.png" id="3_plnf0"]
+[ext_resource type="Texture2D" uid="uid://cbc6humb684oc" path="res://Assets/Coin/Coin-1.png.png" id="3_vukla"]
+[ext_resource type="Texture2D" uid="uid://e1d3sv2j622v" path="res://Assets/Coin/Coin-2.png.png" id="4_o00x8"]
+[ext_resource type="Texture2D" uid="uid://5qdn5aylsqwt" path="res://Assets/Coin/Coin-3.png.png" id="5_84xpj"]
+[ext_resource type="Texture2D" uid="uid://b1vph4jcg622d" path="res://Assets/Coin/Coin-4.png.png" id="6_5ft70"]
+[ext_resource type="Texture2D" uid="uid://cff3blu8g3tm3" path="res://Assets/Coin/Coin-5.png.png" id="7_fdsak"]
+[ext_resource type="Texture2D" uid="uid://cptgyuwnradad" path="res://Assets/Coin/Coin-6.png.png" id="8_qs1xq"]
+[ext_resource type="Texture2D" uid="uid://b5x3jqb2e0ppc" path="res://Assets/Coin/Coin-7.png.png" id="9_mbv52"]
+
+[sub_resource type="Theme" id="Theme_plnf0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ho2ec"]
+bg_color = Color(1, 1, 1, 0.19215687)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1alot"]
+draw_center = false
+border_width_left = 186
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plnf0"]
+bg_color = Color(1, 1, 1, 0.19215687)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.68235296, 0.8, 0.93333334, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3cqy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_obdur"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vukla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_o00x8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_84xpj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5ft70")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fdsak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qs1xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mbv52")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_25ulu"]
+resource_name = "title_entrance"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m3d7j"]
+_data = {
+&"title_entrance": SubResource("Animation_25ulu")
+}
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_25ulu")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_k4b42")
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RootLayout" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -912.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/RootLayout"]
+layout_mode = 2
+
+[node name="sypnosis" type="Control" parent="CanvasLayer/RootLayout/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/RootLayout/VBoxContainer/sypnosis"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0076511614
+anchor_top = 0.10206422
+anchor_right = 0.27465117
+anchor_bottom = 0.15906423
+offset_left = -0.26399994
+offset_top = -56.0
+offset_right = 0.039993286
+offset_bottom = -55.70401
+size_flags_horizontal = 4
+theme = SubResource("Theme_plnf0")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_ho2ec")
+theme_override_styles/focus = SubResource("StyleBoxFlat_1alot")
+text = "SYNOPSIS"
+vertical_alignment = 1
+autowrap_trim_flags = 64
+clip_text = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/RootLayout/VBoxContainer/sypnosis"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -339.0
+offset_bottom = 227.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_plnf0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_u3cqy")
+text = "Coin Troll is a low level enemy character who loves collecting coins, even though he was only designed to guard a small part of a level, and his endless obsession soon begins to cause problems within the game, eventually forcing him to run, and that is where his adventure truly begins; Coin Troll Adventure is a hybrid interactive gametoon where you read the story as a scrolling webtoon comic and play through action segments when the story demands it, so every chapter is yours to read, every battle is yours to fight
+Read it. Play it. Collect everything."
+fit_content = true
+scroll_following = true
+scroll_following_visible_characters = true
+
+[node name="ButtonsPanel" type="VBoxContainer" parent="CanvasLayer/RootLayout"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="CoinDisplay" type="HBoxContainer" parent="CanvasLayer/RootLayout/ButtonsPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/RootLayout/ButtonsPanel/CoinDisplay"]
+layout_mode = 2
+
+[node name="CoinIcon" type="AnimatedSprite2D" parent="CanvasLayer/RootLayout/ButtonsPanel/CoinDisplay/HBoxContainer"]
+position = Vector2(-45.999996, 32.999996)
+scale = Vector2(0.8333333, 0.8333333)
+sprite_frames = SubResource("SpriteFrames_obdur")
+autoplay = "default"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/RootLayout/ButtonsPanel/CoinDisplay"]
+layout_mode = 2
+
+[node name="CoinLabel" type="Label" parent="CanvasLayer/RootLayout/ButtonsPanel/CoinDisplay/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Coins"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/RootLayout/ButtonsPanel/CoinDisplay"]
+layout_mode = 2
+
+[node name="CoinIcon" type="AnimatedSprite2D" parent="CanvasLayer/RootLayout/ButtonsPanel/CoinDisplay/HBoxContainer3"]
+position = Vector2(50.999996, 34.999996)
+scale = Vector2(0.8333333, 0.8333333)
+sprite_frames = SubResource("SpriteFrames_obdur")
+autoplay = "default"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/RootLayout/ButtonsPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer/RootLayout/ButtonsPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 50
+text = "Continue"
+
+[node name="StartButton" type="Button" parent="CanvasLayer/RootLayout/ButtonsPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("3_plnf0")
+
+[node name="ChaptersButton" type="Button" parent="CanvasLayer/RootLayout/ButtonsPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 50
+text = "Chapters"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/RootLayout/ButtonsPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/RootLayout/ButtonsPanel/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+
+[node name="credits" type="Button" parent="CanvasLayer/RootLayout/ButtonsPanel/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 50
+text = "credits"
+
+[node name="quit" type="Button" parent="CanvasLayer/RootLayout/ButtonsPanel/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[node name="VersionLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+text = "Version 0.1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_m3d7j")
+}
+
+[connection signal="pressed" from="CanvasLayer/RootLayout/ButtonsPanel/HBoxContainer2/quit" to="." method="_on_quit_pressed"]

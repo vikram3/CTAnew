@@ -1,0 +1,12 @@
+/.godot/
+/.import/
+
+# Godot generated/imported files
+*.tmp
+*.translation
+export.cfg
+export_presets.cfg
+
+# OS/editor files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,288 @@
+[gd_scene load_steps=17 format=3 uid="uid://4rcg0sc2sq8o"]
+
+[ext_resource type="Script" uid="uid://bhqfgi6bf0oo2" path="res://Scenes/Environments/Proto_Levels/proto_level.gd" id="1_fehhy"]
+[ext_resource type="PackedScene" uid="uid://dmkxl3vi3shkq" path="res://Scenes/Environments/Proto_Levels/Moving_Platforms/moving_platform.tscn" id="2_x6i8t"]
+[ext_resource type="PackedScene" uid="uid://d05pgtiygcxgi" path="res://Scenes/Camera/cam_root.tscn" id="4_xb7bf"]
+[ext_resource type="PackedScene" uid="uid://rg6eyl8kgtdj" path="res://Scenes/Scene_Manager/trigger_area/transition_area.tscn" id="5_q6u4j"]
+[ext_resource type="Texture2D" uid="uid://xx3558ycywxc" path="res://Assets/button/button_arrow_left_pressed.png" id="8_ta6m8"]
+[ext_resource type="Texture2D" uid="uid://cynh16nr52nr2" path="res://Assets/button/button_arrow_right.png" id="9_1uvqt"]
+[ext_resource type="PackedScene" uid="uid://b8u54nwif8s4d" path="res://Scenes/Characters/Player/player.tscn" id="10_1uvqt"]
+[ext_resource type="Texture2D" uid="uid://b3ifpug2mjuo7" path="res://Assets/button/button_arrow_up_pressed.png" id="10_oe30g"]
+[ext_resource type="Texture2D" uid="uid://cgifynuyolm00" path="res://Assets/bgandTiles/skyBackgroundNight.png" id="10_ta6m8"]
+[ext_resource type="Texture2D" uid="uid://ccf05640ckx6m" path="res://Assets/bgandTiles/bgAssetsNight.png" id="11_1uvqt"]
+[ext_resource type="PackedScene" uid="uid://byjk18f2ujvhk" path="res://Scenes/Characters/Enemies/skeleton/orange/skeleton_orange.tscn" id="11_oe30g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6u4j"]
+size = Vector2(64, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fehhy"]
+size = Vector2(50.833313, 66.666664)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkxru"]
+size = Vector2(33.052498, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ta6m8"]
+size = Vector2(864, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1uvqt"]
+size = Vector2(20, 98)
+
+[node name="Proto_Level" type="Node2D"]
+script = ExtResource("1_fehhy")
+
+[node name="MovingPlatforms" type="Node2D" parent="."]
+
+[node name="MovingPlatform" parent="MovingPlatforms" instance=ExtResource("2_x6i8t")]
+position = Vector2(1080, -40)
+move_type = 1
+move_limit = 450.0
+wait_time = 5.0
+
+[node name="MovingPlatform2" parent="MovingPlatforms" instance=ExtResource("2_x6i8t")]
+position = Vector2(1216, -40)
+move_type = 1
+speed = 100.0
+move_limit = 450.0
+wait_time = 5.0
+
+[node name="MovingPlatform3" parent="MovingPlatforms" instance=ExtResource("2_x6i8t")]
+position = Vector2(1336, -312)
+move_type = 1
+speed = 120.0
+move_limit = 600.0
+wait_time = 6.0
+
+[node name="MovingPlatform5" parent="MovingPlatforms" instance=ExtResource("2_x6i8t")]
+position = Vector2(623, -113)
+move_type = 1
+move_limit = 150.0
+
+[node name="Cam_Root" parent="." instance=ExtResource("4_xb7bf")]
+position = Vector2(64, 136)
+
+[node name="Camera2D" parent="Cam_Root" index="0"]
+zoom = Vector2(5, 5)
+
+[node name="Dead_Zone" parent="Cam_Root" index="1"]
+visible = true
+
+[node name="CollisionShape2D" parent="Cam_Root/Dead_Zone" index="0"]
+shape = SubResource("RectangleShape2D_q6u4j")
+
+[node name="TransitionArea" parent="." instance=ExtResource("5_q6u4j")]
+position = Vector2(902, 60.000004)
+scale = Vector2(1.2, 1.2)
+
+[node name="CollisionShape2D" parent="TransitionArea" index="0"]
+position = Vector2(-106.66666, -9.166664)
+shape = SubResource("RectangleShape2D_fehhy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ExitButton" type="Button" parent="CanvasLayer"]
+offset_left = 156.0
+offset_top = 96.0
+offset_right = 164.0
+offset_bottom = 104.0
+
+[node name="ExitZone" type="Area2D" parent="."]
+position = Vector2(717, 69)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitZone"]
+shape = SubResource("RectangleShape2D_tkxru")
+
+[node name="control" type="CanvasLayer" parent="."]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="control"]
+position = Vector2(46, 172.00002)
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("9_1uvqt")
+action = "right"
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="control"]
+position = Vector2(4.0000076, 171)
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("8_ta6m8")
+action = "left"
+
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="control"]
+position = Vector2(272.99997, 136)
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("10_oe30g")
+action = "jump"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="SkyBackgroundNight" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(1, 431)
+texture = ExtResource("10_ta6m8")
+
+[node name="ENV" type="Node2D" parent="."]
+z_index = -1
+
+[node name="BgAssetsNight3" type="Sprite2D" parent="ENV"]
+position = Vector2(42.000015, 156)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(2584, 1720, 856, 392)
+
+[node name="BgAssetsNight11" type="Sprite2D" parent="ENV"]
+position = Vector2(431, 192)
+scale = Vector2(0.5432433, 0.5432433)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight18" type="Sprite2D" parent="ENV"]
+position = Vector2(-655, 192)
+scale = Vector2(0.5432433, 0.5432433)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight8" type="Sprite2D" parent="ENV"]
+position = Vector2(555, 37.999985)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(1352, 296, 184, 1040)
+
+[node name="BgAssetsNight9" type="Sprite2D" parent="ENV"]
+position = Vector2(-316, 21)
+scale = Vector2(0.37731954, 0.37731954)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(144, 1488, 1096, 776)
+
+[node name="BgAssetsNight10" type="Sprite2D" parent="ENV"]
+position = Vector2(203, 21)
+scale = Vector2(0.37731954, 0.37731954)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(144, 1488, 1096, 776)
+
+[node name="BgAssetsNight16" type="Sprite2D" parent="ENV"]
+position = Vector2(709, 54)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(61, 2381, 1951, 1073)
+
+[node name="BgAssetsNight5" type="Sprite2D" parent="ENV"]
+position = Vector2(622.18823, 127.799995)
+scale = Vector2(0.15294121, 0.15294121)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(184, 504, 536, 408)
+
+[node name="BgAssetsNight14" type="Sprite2D" parent="ENV"]
+position = Vector2(703.00006, 127.799995)
+scale = Vector2(0.15294121, 0.15294121)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(184, 504, 536, 408)
+
+[node name="BgAssetsNight" type="Sprite2D" parent="ENV"]
+position = Vector2(117.00001, 111)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(61, 2381, 1951, 1073)
+
+[node name="BgAssetsNight13" type="Sprite2D" parent="ENV"]
+position = Vector2(252, 142)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(2584, 1720, 856, 392)
+
+[node name="BgAssetsNight15" type="Sprite2D" parent="ENV"]
+position = Vector2(784, 127.799995)
+scale = Vector2(0.15294121, 0.15294121)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(184, 504, 536, 408)
+
+[node name="BgAssetsNight7" type="Sprite2D" parent="ENV"]
+position = Vector2(-53.000004, 116)
+scale = Vector2(0.42499995, 0.42499995)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(3784, 240, 288, 752)
+
+[node name="BgAssetsNight17" type="Sprite2D" parent="ENV"]
+position = Vector2(-174.00002, 116.00001)
+scale = Vector2(0.42499995, 0.42499995)
+texture = ExtResource("11_1uvqt")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(3784, 240, 288, 752)
+
+[node name="BgAssetsNight6" type="Sprite2D" parent="ENV"]
+position = Vector2(811.00006, 59.000004)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(3432, 552, 296, 752)
+
+[node name="BgAssetsNight12" type="Sprite2D" parent="ENV"]
+position = Vector2(494, 106)
+scale = Vector2(0.1, 0.1668919)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight4" type="Sprite2D" parent="ENV"]
+position = Vector2(465, 136.3)
+scale = Vector2(0.1, 0.1668919)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight19" type="Sprite2D" parent="ENV"]
+position = Vector2(465, 136.3)
+scale = Vector2(0.1, 0.1668919)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(2144, 208, 1608, 296)
+
+[node name="BgAssetsNight2" type="Sprite2D" parent="ENV"]
+z_index = 2
+position = Vector2(564, 83)
+scale = Vector2(0.24419926, 0.24419926)
+texture = ExtResource("11_1uvqt")
+region_enabled = true
+region_rect = Rect2(2019, 2763, 565, 639)
+
+[node name="Player" parent="." instance=ExtResource("10_1uvqt")]
+position = Vector2(72, 144)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(344, 232)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(96, -16)
+shape = SubResource("RectangleShape2D_ta6m8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(48, -120)
+shape = SubResource("RectangleShape2D_1uvqt")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-344, -120)
+shape = SubResource("RectangleShape2D_1uvqt")
+
+[node name="enemies" type="Node2D" parent="."]
+position = Vector2(280, 136.00002)
+scale = Vector2(0.1, 0.1)
+
+[node name="skeleton_orange" parent="enemies" instance=ExtResource("11_oe30g")]
+position = Vector2(416, 64)
+
+[editable path="Cam_Root"]
+[editable path="TransitionArea"]

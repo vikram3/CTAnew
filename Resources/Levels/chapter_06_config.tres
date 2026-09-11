@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Progression/ChapterConfig.gd" id="1_chapter"]
+[ext_resource type="Script" path="res://Scripts/Progression/SegmentConfig.gd" id="2_segment"]
+
+[sub_resource type="Resource" id="Segment_0"]
+script = ExtResource("2_segment")
+before_page = 12
+transition_text = "Big Bird went straight for projectiles - dodge and get close!"
+game_index = 0
+coins_reward = 45
+
+[sub_resource type="Resource" id="Segment_1"]
+script = ExtResource("2_segment")
+before_page = 26
+transition_text = "Alex is on one knee... he's not done yet. Neither are we!"
+game_index = 1
+coins_reward = 45
+
+[resource]
+script = ExtResource("1_chapter")
+chapter_number = 6
+page_count = 150
+unlock_cost = 250
+segments = Array[ExtResource("2_segment")]([SubResource("Segment_0"), SubResource("Segment_1")])

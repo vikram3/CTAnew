@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://daeqa1um1o7xy"]
+
+[ext_resource type="Script" uid="uid://du3f3xs2rja8n" path="res://Scripts/Autoload/SceneManager.gd" id="1_kry3j"]
+[ext_resource type="PackedScene" uid="uid://ck42ujmxyg137" path="res://Scenes/UI/TitleScreen.tscn" id="2_21xkr"]
+[ext_resource type="PackedScene" uid="uid://c8etlfti6k06a" path="res://Scenes/UI/chapter_select.tscn" id="3_6bp64"]
+[ext_resource type="PackedScene" uid="uid://ckjdbatpejk4p" path="res://Scenes/UI/WebtoonReader.tscn" id="4_344ge"]
+[ext_resource type="PackedScene" uid="uid://4rcg0sc2sq8o" path="res://Scenes/Environments/Proto_Levels/proto_level.tscn" id="5_ynf5e"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_kry3j")
+
+[node name="TitleScreen" parent="." instance=ExtResource("2_21xkr")]
+
+[node name="ChapterSelect" parent="." instance=ExtResource("3_6bp64")]
+
+[node name="WebtoonReader" parent="." instance=ExtResource("4_344ge")]
+
+[node name="Proto_Level" parent="." instance=ExtResource("5_ynf5e")]
+
+[editable path="ChapterSelect"]

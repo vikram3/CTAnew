@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=5 format=3 uid="uid://dif8yf3rpaabs"]
+
+[ext_resource type="Script" uid="uid://vbkf002arixc" path="res://Scripts/Characters/CharacterData.gd" id="1_character_data"]
+[ext_resource type="Script" uid="uid://ba0i3u40ltfdw" path="res://Scripts/Stats_Resource.gd" id="2_stats_resource"]
+[ext_resource type="PackedScene" uid="uid://dq6fpw1ybngv2" path="res://Scenes/Characters/Player/Projectile/fire_ball.tscn" id="3_fire_ball"]
+
+[sub_resource type="Resource" id="StatsResource_ct"]
+script = ExtResource("2_stats_resource")
+max_energy = 100.0
+damage = 1.1
+defense = 20.0
+crit_chance = 0.4
+crit_damage = 1.1
+
+[resource]
+script = ExtResource("1_character_data")
+character_id = &"ct"
+display_name = "CT"
+stats = SubResource("StatsResource_ct")
+projectile_scene = ExtResource("3_fire_ball")

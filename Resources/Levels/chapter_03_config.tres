@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Progression/ChapterConfig.gd" id="1_chapter"]
+[ext_resource type="Script" path="res://Scripts/Progression/SegmentConfig.gd" id="2_segment"]
+
+[sub_resource type="Resource" id="Segment_0"]
+script = ExtResource("2_segment")
+before_page = 61
+transition_text = "Better snap out of it... something doesn't feel right."
+game_index = 0
+coins_reward = 35
+scene_path = "res://Scenes/Chapters/Chapter3/CH03_S01_CliffPanic.tscn"
+
+[sub_resource type="Resource" id="Segment_1"]
+script = ExtResource("2_segment")
+before_page = 120
+transition_text = "Alright Flex, lead the way - but watch out for what's in these woods!"
+game_index = 1
+coins_reward = 35
+scene_path = "res://Scenes/Chapters/Chapter3/CH03_S02_ForestExploration.tscn"
+
+[resource]
+script = ExtResource("1_chapter")
+chapter_number = 3
+page_count = 120
+unlock_cost = 100
+segments = Array[ExtResource("2_segment")]([SubResource("Segment_0"), SubResource("Segment_1")])

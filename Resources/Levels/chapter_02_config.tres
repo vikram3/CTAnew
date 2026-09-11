@@ -1,0 +1,35 @@
+[gd_resource type="Resource" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Progression/ChapterConfig.gd" id="1_chapter"]
+[ext_resource type="Script" path="res://Scripts/Progression/SegmentConfig.gd" id="2_segment"]
+
+[sub_resource type="Resource" id="Segment_0"]
+script = ExtResource("2_segment")
+before_page = 6
+transition_text = "New players flooding in... better grab what I can before it gets crazy!"
+game_index = 0
+coins_reward = 35
+scene_path = "res://Scenes/Chapters/Chapter2/CH02_S01_ShadowFlood.tscn"
+
+[sub_resource type="Resource" id="Segment_1"]
+script = ExtResource("2_segment")
+before_page = 24
+transition_text = "Big Boss is coming - MOVE!"
+game_index = 1
+coins_reward = 35
+scene_path = "res://Scenes/Chapters/Chapter2/CH02_S02_BossDodge.tscn"
+
+[sub_resource type="Resource" id="Segment_2"]
+script = ExtResource("2_segment")
+before_page = 95
+transition_text = "She's holding her own... but Big Boss has one more trick!"
+game_index = 2
+coins_reward = 35
+scene_path = "res://Scenes/Chapters/Chapter2/CH02_S03_ReinforcementWave.tscn"
+
+[resource]
+script = ExtResource("1_chapter")
+chapter_number = 2
+page_count = 156
+unlock_cost = 50
+segments = Array[ExtResource("2_segment")]([SubResource("Segment_0"), SubResource("Segment_1"), SubResource("Segment_2")])

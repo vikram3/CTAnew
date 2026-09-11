@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://wff7xi1u0w1r"]
+
+[ext_resource type="Script" uid="uid://1mlyj2go4s4p" path="res://Scripts/PlayableTriggerPanel.gd" id="1_gytfu"]
+
+[sub_resource type="Animation" id="Animation_smyb6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gytfu"]
+resource_name = "pulse"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.19215687)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smyb6"]
+_data = {
+&"RESET": SubResource("Animation_smyb6"),
+&"pulse": SubResource("Animation_gytfu")
+}
+
+[node name="PlayableTriggerPanel" type="PanelContainer"]
+script = ExtResource("1_gytfu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "▶ PLAYABLE SECTION"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "transition_text"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "TAP TO PLAY!"
+
+[node name="SkipButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "\"Skip\""
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../VBoxContainer")
+libraries = {
+&"": SubResource("AnimationLibrary_smyb6")
+}
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

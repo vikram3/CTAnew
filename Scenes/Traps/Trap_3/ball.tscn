@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7pyxrlku05ev"]
+
+[ext_resource type="Script" uid="uid://dbc6ol35auedn" path="res://Scenes/Traps/Trap_3/ball.gd" id="1_0mbil"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_lq8dt"]
+radius = 2.0
+height = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0mbil"]
+radius = 40.669743
+
+[node name="ball" type="RigidBody2D" node_paths=PackedStringArray("ray")]
+z_index = -1
+collision_layer = 0
+script = ExtResource("1_0mbil")
+ray = NodePath("RayCast2D")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.038397167, 0.038397167, 0.03839716, 1)
+position = Vector2(0.12484646, 7.867813e-06)
+scale = Vector2(20.272655, 20.000015)
+mesh = SubResource("SphereMesh_lq8dt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.12484646, -7.6293945e-06)
+shape = SubResource("CircleShape2D_0mbil")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 40)
+target_position = Vector2(0, 150)
+collision_mask = 2

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://c5gi11bhbgdnj"]
+
+[ext_resource type="Script" uid="uid://ct8wmsa0348y5" path="res://Scripts/Enemies/EnemyData.gd" id="1_enemy_data"]
+[ext_resource type="Script" uid="uid://ba0i3u40ltfdw" path="res://Scripts/Stats_Resource.gd" id="2_stats_resource"]
+
+[sub_resource type="Resource" id="StatsResource_skull_orange"]
+script = ExtResource("2_stats_resource")
+
+[resource]
+script = ExtResource("1_enemy_data")
+enemy_id = &"skull_orange"
+display_name = "Orange Skull"
+stats = SubResource("StatsResource_skull_orange")
+weaknesses = null
+movement_speed = 30.0
+chase_speed = 100.0
+attack_damage = 25
+attack_range = 78.0
