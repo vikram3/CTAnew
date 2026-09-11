@@ -10,14 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Prototype"
-config/description="this is a prototype for a game"
-config/version="1.0"
+config/name="Nowy projekt gry"
 run/main_scene="uid://ck42ujmxyg137"
-config/features=PackedStringArray("4.5", "Mobile")
-boot_splash/image="uid://cv3kn4kw85384"
-config/icon="uid://cguavavtawtpr"
-config/image=""
+config/features=PackedStringArray("4.5", "GL Compatibility")
+config/icon="res://icon.svg"
 
 [autoload]
 
@@ -131,7 +127,5 @@ sprint={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=3
-renderer/rendering_method="mobile"
-textures/vram_compression/import_etc2_astc=true
-textures/lossless_compression/force_png=true
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
